@@ -1,0 +1,21 @@
+# Caddy 配置示例。阶段 1 由教练按你的域名和端口调整。
+# 把 example.com 换成你的域名。域名解析生效后，Caddy 会自动申请并续期 HTTPS 证书。
+
+example.com {
+	encode gzip
+
+	# 接口：转给后端。端口以 backend/.env 里的 API_PORT 为准。
+	handle /api/* {
+		reverse_proxy 127.0.0.1:8001 {
+			# 立即把数据发给浏览器，不缓冲。SSE 实时推送需要它。
+			flush_interval -1
+		}
+	}
+
+	# 其余请求：返回前端的静态文件。
+	handle {
+		root * /srv/job-agent/frontend/dist
+		try_files {path} /index.html
+		file_server
+	}
+}

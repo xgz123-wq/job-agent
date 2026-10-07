@@ -1,0 +1,39 @@
+# 环境配置
+.env
+
+# 上传文件
+uploads/
+
+# 日志
+logs/
+*.log
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Celery 调度数据库
+celerybeat-schedule.db*
+celerybeat-schedule/
+celerybeat.pid
+
+# Docker 卷
+postgres-data/
+redis-data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统
+.DS_Store
+Thumbs.db
